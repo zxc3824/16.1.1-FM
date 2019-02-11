@@ -15,20 +15,18 @@ CCopy::~CCopy(void)
 
 void CCopy::FileCopy(CString m_oroot, CString m_mroot, CString m_name, CString m_extension, CString m_addfname)
 {
-	CFinder finder; // CFinder ¼±¾ğ
+	CFinder finder; // CFinder ì„ ì–¸
 	int fcount;
 	
-	CStringArray a;
-	a.Copy(finder.ofList);
 	fcount = finder.search(m_oroot, m_mroot, m_name, m_extension, m_addfname);
 
-	if (fcount == -1) return; // ÆÄÀÏ °Ë»ö ÈÄ ¿¡·¯ ¹ß»ı ½Ã Áß´Ü(Finder.cpp)
+	if (fcount == -1) return; // íŒŒì¼ ê²€ìƒ‰ í›„ ì—ëŸ¬ ë°œìƒ ì‹œ ì¤‘ë‹¨(Finder.cpp)
 
 	for (int i = 0; i < fcount; i++) {
-		CopyFile((LPCSTR)&finder.ofList[i], (LPCSTR)&finder.mfnList[i], true); // ÆÄÀÏ º¹»ç(ÆÄÀÏÀÌ °ãÄ¥½Ã ¿¡·¯°¡ ³ª°Ô Çß±â ¶§¹®¿¡ true, false °ü°è ¾øÀ½)
+		CopyFile(finder.ofList[i], finder.mfnList[i], true); // íŒŒì¼ ë³µì‚¬(íŒŒì¼ì´ ê²¹ì¹ ì‹œ ì—ëŸ¬ê°€ ë‚˜ê²Œ í–ˆê¸° ë•Œë¬¸ì— true, false ê´€ê³„ ì—†ìŒ)
 	}
 
 	CString text;
-	text.Format(_T("º¹»çÇÑ ÆÄÀÏ ¼ö : %d°³"), fcount);
-	MessageBoxA(NULL, text, "ÆÄÀÏ º¹»ç", NULL); // º¹»çÇÑ ÆÄÀÏ °¹¼ö Ãâ·Â
+	text.Format(_T("ë³µì‚¬í•œ íŒŒì¼ ìˆ˜ : %dê°œ"), fcount);
+	MessageBoxA(NULL, text, "íŒŒì¼ ë³µì‚¬", NULL); // ë³µì‚¬í•œ íŒŒì¼ ê°¯ìˆ˜ ì¶œë ¥
 }
